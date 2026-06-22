@@ -1,25 +1,16 @@
+package doubleLL;
 
-public class LinkedListDemo {
+public class DoubleLLDemo {
 
 	public static void main(String[] args) {
-		SingleLinkedList sl = new SingleLinkedList();
-		sl.addNode(10);
-		sl.addNode(20);
-		sl.addNode(30);
-		sl.addNodeBEG(5); // 5 10 20 30
-		sl.display();
-
-		sl.search(110); // not found
-		sl.search(20); // found
-
-		
-		//addAny 
-		//deleteAny 
 	
+		DoubleLinkedList d = new DoubleLinkedList();
+		d.addNode(10);
+		d.addNode(20);
 	}
 }
 
-class SingleLinkedList {
+class DoubleLinkedList {
 
 	Node head = null;
 	Node last = null;
@@ -29,12 +20,14 @@ class SingleLinkedList {
 			head = new Node();
 			head.data = data;
 			head.next = null;
+			head.prev = null;
 			last = head;
 		} else {
 			Node tmp = new Node();
 			tmp.data = data;
 			tmp.next = null;
 			last.next = tmp;
+			tmp.prev = last;
 			last = tmp;
 		}
 	}
@@ -43,6 +36,8 @@ class SingleLinkedList {
 		Node tmp = new Node();
 		tmp.data = data;
 		tmp.next = head;
+		tmp.prev=null;
+		head.prev=tmp;
 		head = tmp;
 	}
 
@@ -100,13 +95,8 @@ class SingleLinkedList {
 	}
 }
 
-
 class Node {
 	int data;
 	Node next;
+	Node prev;
 }
-
-
- 
-
-
